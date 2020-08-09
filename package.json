@@ -5,6 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test": "jest --clearCache && jest --passWithNoTests --watch",
+    "test:debug": " node --inspect-brk ./node_modules/jest/bin/jest.js --no-cache --runInBand",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
@@ -20,14 +22,15 @@
     "@vue/test-utils": "^1.0.3",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^26.1.0",
+    "prettier": "^1.19.1",
+    "vue-jest": "^3.0.6"
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
-  ],
-  "jest": {
-    "preset": "@vue/cli-plugin-unit-jest"
-  }
+  ]
 }
