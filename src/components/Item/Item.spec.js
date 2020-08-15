@@ -16,11 +16,14 @@ describe('Item.vue', () => {
 
   test('renders a link to the item.url item.title as text', () => {
     const item = {
+      url: 'http://www.googl.com',
       title: 'some title',
     };
     const wrapper = shallowMount(Item, {
       propsData: { item },
     });
-    expect(wrapper.find('a').text()).toBe(item.title);
+    const a = wrapper.find('a');
+    expect(a.text()).toBe(item.title);
+    expect(a.attributes().href).toBe(item.url);
   });
 });
