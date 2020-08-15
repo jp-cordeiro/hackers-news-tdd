@@ -1,5 +1,8 @@
 <template>
-  <li>{{item.url}}</li>
+  <li>
+    <a>{{item.title}}</a>
+    {{item.url}}
+  </li>
 </template>
 
 <script>

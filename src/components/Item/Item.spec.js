@@ -13,4 +13,14 @@ describe('Item.vue', () => {
     });
     expect(wrapper.text()).toContain(item.url);
   });
+
+  test('renders a link to the item.url item.title as text', () => {
+    const item = {
+      title: 'some title',
+    };
+    const wrapper = shallowMount(Item, {
+      propsData: { item },
+    });
+    expect(wrapper.find('a').text()).toBe(item.title);
+  });
 });
