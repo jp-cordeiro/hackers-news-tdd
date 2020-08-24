@@ -1,11 +1,9 @@
 <template>
-<div>
-</div>
+  <div class="hidden" :style="{width: '0%'}"></div>
 </template>
 
 <script>
-export default { 
-} 
+export default {};
 </script>
 
 <style>
