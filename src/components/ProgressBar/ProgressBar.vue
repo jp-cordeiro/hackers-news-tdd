@@ -12,6 +12,7 @@ export default {
   },
   methods: {
     start() {
+      this.percent = 0;
       this.hidden = false;
     },
     finish() {
