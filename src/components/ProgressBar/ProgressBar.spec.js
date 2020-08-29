@@ -43,4 +43,14 @@ describe('ProgressBar.vue', () => {
 
     expect(wrapper.classes()).toContain('hidden');
   });
+
+  test('resets to 0% width when start is called', async () => {
+    wrapper.vm.finish();
+    await wrapper.vm.$nextTick();
+
+    wrapper.vm.start();
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.element.style.width).toBe('0%');
+  });
 });
