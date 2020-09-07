@@ -16,5 +16,8 @@ export default {
       displayItems: window.items,
     };
   },
+  beforeMount() {
+    this.$bar.start();
+  },
 };
 </script>
