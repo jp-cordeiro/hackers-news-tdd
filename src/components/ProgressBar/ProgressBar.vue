@@ -14,10 +14,14 @@ export default {
     start() {
       this.percent = 0;
       this.hidden = false;
+      this.timer = setInterval(() => {
+        this.percent++;
+      }, 100);
     },
     finish() {
       this.hidden = true;
       this.percent = 100;
+      clearInterval(this.timer);
     },
   },
 };
