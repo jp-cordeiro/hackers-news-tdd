@@ -2,6 +2,11 @@ import { shallowMount } from '@vue/test-utils';
 import Item from '@/components/Item/Item.vue';
 import ItemList from './ItemList.vue';
 
+jest.mock('../api/__mocks__/api.js');
+
+import flushPromises from 'flush-promises';
+import { fetchListData } from '../api/__mocks__/api.js';
+
 describe('ItemLis.vue', () => {
   let wrapper;
   let $bar;
@@ -9,22 +14,27 @@ describe('ItemLis.vue', () => {
   beforeEach(() => {
     $bar = {
       start: jest.fn(),
-      finish: () => {},
+      finish: jest.fn(),
     };
 
     wrapper = shallowMount(ItemList, {
       mocks: { $bar },
     });
   });
-  test('renders an Item for each item in windom.items', async () => {
-    window.items = [{}, {}, {}];
-    wrapper = shallowMount(ItemList, {
-      mocks: { $bar },
-    });
-    const items = wrapper.findAllComponents(Item);
-    expect(wrapper.findAllComponents(Item)).toHaveLength(window.items.length);
-    items.wrappers.forEach((wrapper, index) => {
-      expect(wrapper.props().item).toBe(window.items[index]);
+
+  test('renders an Item with data for each item', async () => {
+    expect.assertions(4);
+
+    const items = [{ id: 1 }, { id: 2 }, { id: 3 }];
+    fetchListData.mockResolvedValueOnce(items);
+
+    await flushPromises();
+
+    const Items = wrapper.findAllComponents(Item);
+    expect(Items).toHaveLength(items.length);
+
+    Items.wrappers.forEach((wrapper, index) => {
+      expect(wrapper.vm.item).toBe(items[index]);
     });
   });
 
